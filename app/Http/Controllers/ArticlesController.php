@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Article;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ArticleRequest;
 
 class ArticlesController extends Controller
 {
@@ -23,17 +23,8 @@ class ArticlesController extends Controller
     return view('articles.create');
   }
 
-  public function store(Request $request){
-    $rules = [
-      'title' => 'required|min:3',
-      'body' => 'required',
-      'published_at' => 'required|date',
-    ];
-
-    $validated = $this->validate($request, $rules);
-
-    Article::create($validated);
-
+  public function store(ArticleRequest $request){
+    Article::create($request->validate());
     return redirect('articles');
   }
 }
