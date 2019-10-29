@@ -12,4 +12,11 @@ class Article extends Model
       $query->where('published_at', '<=', Carbon::now());
     }
     protected $fillable = ['title', 'body', 'published_at'];
+
+    protected $dates = [
+      'published_at',
+      'created_at',
+      'updated_at',
+      'deleted_at',
+  ];
 }

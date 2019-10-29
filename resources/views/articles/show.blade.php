@@ -7,5 +7,11 @@
 
   <article>
     <div class="body">{{ $article->body }}</div>
+    <div class="published_at">{{ $article->published_at }}</div>
   </article>
+
+  <div>
+    <a href="{{ action('ArticlesController@edit', [$article->id]) }}" class="btn btn-primary">編集</a>
+    <a href="{{ action('ArticlesController@index') }}" class="btn btn-secondary float-right">一覧へ</a>
+  </div>
 @endsection
