@@ -14,4 +14,8 @@ class PagesController extends Controller
 
       return view('pages.about', $data);
     }
+
+    public function contact(){
+      return view('contact');
+    }
 }

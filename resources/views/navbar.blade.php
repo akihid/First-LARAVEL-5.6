@@ -25,23 +25,36 @@
 
       <!-- 右寄せメニュー -->
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Register</a>
-        </li>
+        @guest
+          <!-- 非ログイン時 -->
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('register') }}">Register</a>
+          </li>
+        @else
+          <!-- ログイン時 -->
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+          </li>
+          <!-- ドロップダウンメニュー -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ Auth::user()->name }} <span class="caret"></span>
+            </a>
 
-        <!-- ドロップダウンメニュー -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            User Name <span class="caret"></span>
-          </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Logout
+              </a>
+            </div>
 
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Logout</a>
-          </div>
-        </li>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+          </li>
+        @endguest
       </ul>
     </div>
   </div>
