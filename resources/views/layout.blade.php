@@ -7,6 +7,9 @@
   <script src="/js/app.js" defer></script>
 </head>
 <body>
+
+  @include('navbar')
+  
   <div class="container py-4">
     @if (session('message'))
       <div class="alert alert-succes">{{ session('message') }}</div>

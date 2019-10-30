@@ -15,7 +15,7 @@
 //     return view('welcome');
 // });
 
-Route::get('/', 'WelcomeController@index')->name('home');
+Route::get('/', 'ArticlesController@index')->name('home');
 Route::get('contact', 'PagesController@contact')->name('contact');
 Route::get('about', 'PagesController@about')->name('about');
 
