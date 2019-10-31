@@ -2,7 +2,9 @@
 
 @section('content')
   <h1>Articles</h1>
-  <a href="articles/create" class="btn btn-primary float-right">新規作成</a>
+  @auth
+    <a href="articles/create" class="btn btn-primary float-right">新規作成</a>
+  @endauth
   <hr/>
 
   @foreach($articles as $article)

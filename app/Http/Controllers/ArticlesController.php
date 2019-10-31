@@ -9,6 +9,10 @@ use App\Http\Requests\ArticleRequest;
 
 class ArticlesController extends Controller
 {
+  public function __construct(){
+    $this->middleware('auth')->except(['index', 'show']);
+  }
+
   public function index() {
     // $articles = Article::all();
     $articles = Article::latest('published_at')->latest('created_at')
