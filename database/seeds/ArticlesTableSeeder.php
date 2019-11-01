@@ -16,8 +16,12 @@ class ArticlesTableSeeder extends Seeder
     public function run()
     {
       DB::table('articles')->delete();
+      $user = App\User::first();
+
       $faker = Faker::create('en_US');
 
-      factory(App\Article::class, 20)->create();
+      factory(App\Article::class, 20)->create([
+        'user_id' => $user->id,
+      ]);
     }
 }
