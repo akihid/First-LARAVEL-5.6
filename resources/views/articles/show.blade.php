@@ -10,6 +10,15 @@
     <div class="published_at">{{ $article->published_at }}</div>
   </article>
 
+  @unless ($article->tags->isEmpty())
+    <h5>Tags:</h5>
+    <ul>
+      @foreach($article->tags as $tag)
+        <li>{{ $tag->name }}</li>
+      @endforeach
+    </ul>
+  @endunless
+
   <div>
     @auth
       <a href="{{ action('ArticlesController@edit', [$article->id]) }}" class="btn btn-primary">編集</a>
